@@ -69,6 +69,11 @@ module OmniAuth
         prune! hash
       end
 
+      def callback_url
+        options[:redirect_uri] || (full_host + script_name + callback_path)
+      end
+
+
       def raw_info
         @raw_info ||= access_token.get("users/me", params_token).parsed
       end
